@@ -2,17 +2,16 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/index.js", // Points to your main server file
+      "src": "api/index.js", 
       "use": "@vercel/node"
     },
     {
-      "src": "public/**", // Serves files from the public directory
+      "src": "public/**", 
       "use": "@vercel/static"
     }
   ],
   "rewrites": [
-    // If a request doesn't match a file in /public,
-    // rewrite it to the serverless function
+
     { "source": "/(.*)", "destination": "/api/index.js" }
   ]
 }
