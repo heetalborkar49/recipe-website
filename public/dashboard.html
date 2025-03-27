@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+
+        <header class="page-header">
+            <h1>Your Recipes</h1>
+            <div class="header-controls">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-checkbox">
+                        <input type="checkbox" id="theme-checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="theme-label">Dark Mode</span>
+                </div>
+                <button id="help-button" class="button-secondary">Help (Generate)</button>
+                <button id="logout-button" class="button-secondary">Logout</button>
+            </div>
+        </header>
+
+        <div id="message" class="message-area"></div>
+
+        <div class="content-section" id="add-recipe-container">
+            <h2 id="form-title">Add New Recipe</h2>
+            <form id="add-recipe-form">
+                <input type="hidden" id="edit-recipe-id"> <input type="text" id="recipe-name" placeholder="Recipe Name" required>
+                <textarea id="ingredients-list" class="auto-resize" placeholder="Ingredients (e.g., 1 cup flour, 2 eggs, pinch of salt)" required></textarea>
+                <textarea id="instructions" class="auto-resize" placeholder="Instructions (step-by-step)" required></textarea>
+
+                <div id="form-buttons" class="form-button-container">
+                    <button type="submit" id="submit-recipe-button" class="button-primary">Add Recipe</button>
+                    <button type="button" id="cancel-edit-button" class="button-secondary" style="display: none;">Cancel Edit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="content-section" id="recipe-list-container">
+            <h2>Saved Recipes</h2>
+            <div id="recipe-list">
+                </div>
+        </div>
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script>
+     const firebaseConfig = {
+       apiKey: "AIzaSyAGz42Umx3Kmg8jZzIE9xg3n9xPrjJ0kdA", // Use your actual key
+       authDomain: "my-recipe-website-695de.firebaseapp.com",
+       projectId: "my-recipe-website-695de",
+       storageBucket: "my-recipe-website-695de.appspot.com", // Corrected .appspot.com
+       messagingSenderId: "666249719529",
+       appId: "1:666249719529:web:0de2d3785de9cd1d538a78"
+     };
+     firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

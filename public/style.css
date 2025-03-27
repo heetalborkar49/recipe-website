@@ -1,0 +1,269 @@
+/* --- Variables --- */
+:root {
+    /* Light Mode (Default) */
+    --primary-color: #fd5612; /* Main orange */
+    --primary-hover: #e44d0e; /* Darker orange for hover */
+    --secondary-color: #95A5A6; /* Muted grey-blue */
+    --secondary-hover: #7F8C8D; /* Darker grey-blue */
+    --delete-color: #E74C3C; /* Softer red */
+    --delete-hover: #C0392B; /* Darker red */
+    --edit-color: #007bff;    /* Blue for edit button */
+    --edit-hover: #0056b3;    /* Darker blue for edit hover */
+
+    --background-body: #F8F9FA; /* Very light grey */
+    --background-content: #FFFFFF; /* White */
+    --background-input: #FFFFFF;
+    --background-light: #ECF0F1; /* Light grey for subtle backgrounds */
+    --background-hover-subtle: #f8f9fa; /* Very subtle light grey for hover */
+
+    --text-color-dark: #2C3E50; /* Dark blue-grey */
+    --text-color-medium: #566573; /* Medium grey */
+    --text-color-light: #95A5A6; /* Light grey */
+    --text-color-white: #FFFFFF;
+
+    --border-color: #DDE3E8; /* Light grey */
+    --border-color-input: #BDC3C7; /* Slightly darker */
+    --focus-ring-color: rgba(253, 86, 18, 0.3); /* Orange glow */
+
+    --success-bg: #E8F8F5; --success-text: #1ABC9C; --success-border: #A3E4D7;
+    --error-bg: #FDEDEC; --error-text: #E74C3C; --error-border: #F5B7B1;
+
+    --font-primary: 'Poppins', sans-serif;
+    --font-logo: 'Fredoka One', cursive;
+
+    --border-radius-small: 4px;
+    --border-radius-medium: 8px;
+    --box-shadow-light: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --box-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --box-shadow-focus: 0 0 0 4px var(--focus-ring-color); /* Enhanced focus shadow */
+    --transition-speed: 0.2s;
+    --transition-speed-fast: 0.15s;
+    --color-transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    --transform-transition: transform var(--transition-speed-fast) ease;
+    --shadow-transition: box-shadow var(--transition-speed) ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+    --primary-color: #fd5612; --primary-hover: #e44d0e;
+    --secondary-color: #B0BEC5; --secondary-hover: #90A4AE;
+    /* delete/edit colors remain */
+
+    --background-body: #2C3E50; --background-content: #34495E;
+    --background-input: #415a71; --background-light: #4E657A;
+    --background-hover-subtle: #3b5267; /* Subtle dark hover */
+
+    --text-color-dark: #ECF0F1; --text-color-medium: #BDC3C7; --text-color-light: #95A5A6;
+    /* text-color-white remains */
+
+    --border-color: #4E657A; --border-color-input: #566573;
+    --focus-ring-color: rgba(253, 86, 18, 0.4);
+
+    --success-bg: #16A085; --success-text: #E8F8F5; --success-border: #138D75;
+    --error-bg: #C0392B; --error-text: #FDEDEC; --error-border: #A93226;
+
+    --box-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.15); --box-shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --box-shadow-focus: 0 0 0 4px var(--focus-ring-color); /* Dark mode focus shadow */
+}
+
+/* --- General Styles & Body --- */
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: var(--font-primary); background-color: var(--background-body); color: var(--text-color-dark); margin: 0; padding: 0; line-height: 1.7; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: var(--color-transition); }
+
+/* --- Page Layout --- */
+body.auth-page { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; position: relative; /* Needed for absolute positioning of toggle */ }
+body.auth-page .main-container { width: 100%; max-width: 380px; margin: auto; text-align: center; }
+.page-container { max-width: 1400px; margin: 40px auto; padding: 0 30px; }
+
+/* --- Auth Page Theme Toggle --- */
+#auth-theme-toggle-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10; /* Ensure it's above other content if necessary */
+}
+/* Ensure theme toggle styles apply here too (copied from header styles) */
+#auth-theme-toggle-container .theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+#auth-theme-toggle-container .theme-switch-wrapper .theme-label {
+    color: var(--text-color-medium);
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+    transition: color var(--transition-speed) ease;
+}
+@media (max-width: 480px) {
+    #auth-theme-toggle-container .theme-switch-wrapper .theme-label {
+        display: none; /* Hide text on small screens */
+    }
+    #auth-theme-toggle-container {
+        top: 15px;
+        right: 15px;
+    }
+}
+
+
+/* --- Header (Dashboard/Help - remains same) --- */
+.page-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 40px; flex-wrap: wrap; gap: 15px; transition: border-color var(--transition-speed) ease; }
+.page-header.simple-header { border-bottom: none; margin-bottom: 30px; }
+.page-header h1 { margin: 0; color: var(--primary-color); font-size: 2rem; font-weight: 600; transition: color var(--transition-speed) ease; }
+.page-header .header-controls { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+
+/* --- Content Sections (remains same) --- */
+.content-section { background-color: var(--background-content); padding: 25px 30px; border-radius: var(--border-radius-medium); box-shadow: var(--box-shadow-medium); margin-bottom: 40px; text-align: left; transition: background-color var(--transition-speed) ease, var(--shadow-transition); }
+.content-section h2 { margin-top: 0; margin-bottom: 25px; color: var(--text-color-dark); border-bottom: 1px solid var(--border-color); padding-bottom: 15px; font-size: 1.4rem; font-weight: 500; transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease; }
+
+/* --- Logo Styles (remains same) --- */
+.logo-container { margin-bottom: 50px; }
+.logo-title { font-family: var(--font-logo); font-size: 3.8rem; color: var(--primary-color); margin: 0; line-height: 1.1; transition: color var(--transition-speed) ease; }
+.logo-subtitle { font-size: 1rem; color: var(--text-color-medium); margin-top: 8px; font-weight: 400; letter-spacing: 1px; transition: color var(--transition-speed) ease; }
+
+/* --- Authentication Container & Forms (remains same) --- */
+#auth-container { width: 100%; margin-top: 20px; }
+#auth-container h2 { display: none; }
+#auth-container form { display: flex; flex-direction: column; max-width: 100%; margin-bottom: 20px; }
+
+/* General Input/Textarea Styling */
+form input, form textarea, .form-control-edit { margin-bottom: 18px; padding: 14px 18px; border: 1px solid var(--border-color-input); border-radius: var(--border-radius-medium); font-size: 1rem; font-family: var(--font-primary); width: 100%; background-color: var(--background-input); color: var(--text-color-dark); transition: border-color var(--transition-speed) ease, var(--shadow-transition), background-color var(--transition-speed) ease, color var(--transition-speed) ease, var(--transform-transition); /* Added transform */ }
+form input:focus, form textarea:focus, .form-control-edit:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-focus); /* Use variable for focus shadow */
+    /* ** NEW: Subtle scale effect on focus ** */
+    /* transform: scale(1.01); */ /* Optional: Can sometimes cause minor layout shifts */
+}
+form input::placeholder, form textarea::placeholder, .form-control-edit::placeholder { color: var(--text-color-light); opacity: 0.8; transition: color var(--transition-speed) ease; }
+/* Specific Textarea Heights/Styles (remain same) */
+#add-recipe-form textarea#ingredients-list { min-height: 110px; resize: vertical; }
+#add-recipe-form textarea#instructions { min-height: 160px; resize: vertical; }
+#generation-controls textarea#ingredients-input { min-height: 110px; resize: vertical; }
+.edit-recipe-ingredients, .edit-recipe-instructions { resize: vertical; margin-top: 10px; }
+.edit-recipe-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 10px; padding: 10px 14px; }
+
+/* --- Buttons --- */
+button, a.button-secondary { padding: 13px 25px; border: 1px solid transparent; border-radius: var(--border-radius-medium); cursor: pointer; font-size: 1rem; font-family: var(--font-primary); font-weight: 500; transition: background-color var(--transition-speed-fast) ease, var(--transform-transition), var(--shadow-transition), color var(--transition-speed-fast) ease, border-color var(--transition-speed-fast) ease, opacity var(--transition-speed) ease, filter var(--transition-speed-fast) ease; /* Added filter transition */ text-align: center; text-decoration: none; display: inline-block; color: var(--text-color-white); line-height: normal; white-space: nowrap; box-shadow: var(--box-shadow-light); margin-left: 5px; }
+button:first-child, a.button-secondary:first-child { margin-left: 0; }
+button:hover, a.button-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    /* ** NEW: Subtle brightness increase on hover ** */
+    filter: brightness(1.05);
+}
+body.dark-mode button:hover, body.dark-mode a.button-secondary:hover { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); filter: brightness(1.1); /* Slightly more brightness in dark mode */ }
+button:active, a.button-secondary:active { transform: translateY(0); box-shadow: var(--box-shadow-light); filter: brightness(0.95); /* Slightly darker on active click */ }
+button:disabled, a.button-secondary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; filter: none; /* Remove filter when disabled */ }
+/* Button Styles (Auth, Primary, Secondary, Edit, Delete - remain same) */
+.button-auth { background-color: var(--primary-color); color: var(--text-color-white); margin-top: 15px; width: 100%; }
+.button-auth:hover { background-color: var(--primary-hover); } .button-auth:disabled { background-color: var(--primary-color); opacity: 0.6; }
+.button-primary { background-color: var(--primary-color); color: var(--text-color-white); margin-top: 10px; width: auto; }
+form .button-primary { width: 100%; }
+#generation-controls .button-primary { width: auto; margin-top: 0; }
+#generated-recipe-container .button-primary { width: auto; margin-top: 0; }
+.button-primary:hover { background-color: var(--primary-hover); } .button-primary:disabled { background-color: var(--primary-color); opacity: 0.6; }
+.button-secondary { background-color: var(--secondary-color); color: var(--text-color-white); width: auto; }
+body.dark-mode .button-secondary { background-color: var(--secondary-color); }
+.button-secondary:hover { background-color: var(--secondary-hover); text-decoration: none; }
+.button-secondary:disabled { background-color: var(--secondary-color); opacity: 0.6; }
+.recipe-action-buttons button { padding: 7px 15px; margin-top: 0; font-size: 0.9rem; line-height: 1.4; }
+.delete-button { background-color: var(--delete-color); color: var(--text-color-white); }
+.delete-button:hover { background-color: var(--delete-hover); } .delete-button:disabled { background-color: var(--delete-color); opacity: 0.6; }
+.edit-button { background-color: var(--edit-color); color: var(--text-color-white); }
+.edit-button:hover { background-color: var(--edit-hover); color: var(--text-color-white); }
+.edit-button:disabled { background-color: var(--edit-color); opacity: 0.6; }
+.save-changes-button { background-color: var(--primary-color); }
+.save-changes-button:hover { background-color: var(--primary-hover); } .save-changes-button:disabled { background-color: var(--primary-color); opacity: 0.6; }
+.cancel-edit-button { background-color: var(--secondary-color); }
+.cancel-edit-button:hover { background-color: var(--secondary-hover); } .cancel-edit-button:disabled { background-color: var(--secondary-color); opacity: 0.6; }
+
+/* --- Toggle Link (Auth Page - remains same) --- */
+.toggle-link { text-align: center; margin-top: 30px; margin-bottom: 0; font-size: 0.95rem; color: var(--text-color-medium); transition: color var(--transition-speed) ease; }
+.toggle-link a { color: var(--primary-color); text-decoration: none; font-weight: 500; transition: color var(--transition-speed) ease; }
+.toggle-link a:hover { text-decoration: underline; color: var(--primary-hover); }
+
+/* --- Message Area Styling (remains same) --- */
+.message-area { padding: 14px 18px; margin: 20px 0; border-radius: var(--border-radius-medium); display: none; text-align: center; font-size: 0.95rem; font-weight: 500; background-color: var(--error-bg); color: var(--error-text); border: 1px solid var(--error-border); box-shadow: var(--box-shadow-light); transition: var(--color-transition), var(--shadow-transition), opacity var(--transition-speed) ease; }
+body.auth-page #auth-container .message-area { margin-top: 25px; }
+.content-section .message-area { margin-left: 0; margin-right: 0; }
+.message-area.success { background-color: var(--success-bg); color: var(--success-text); border: 1px solid var(--success-border); }
+
+/* --- Recipe Item Styling (Dashboard) --- */
+#recipe-list { display: grid; grid-template-columns: 1fr; gap: 25px; }
+.recipe-item { border: 1px solid var(--border-color); padding: 25px; border-radius: var(--border-radius-medium); background-color: var(--background-content); box-shadow: var(--box-shadow-light); overflow: hidden; position: relative; transition: var(--shadow-transition), border-color var(--transition-speed) ease, background-color var(--transition-speed) ease; }
+.recipe-item:hover {
+    box-shadow: var(--box-shadow-medium);
+    /* ** NEW: Subtle background change on hover ** */
+    background-color: var(--background-hover-subtle);
+}
+/* Recipe Header (remain same) */
+.recipe-item .recipe-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; flex-wrap: nowrap; gap: 15px; }
+.recipe-item .recipe-header .recipe-name-display { margin: 0; color: var(--primary-color); font-weight: 600; flex-grow: 1; font-size: 1.3rem; line-height: 1.4; transition: color var(--transition-speed) ease; min-width: 0; word-break: break-word; }
+.recipe-item .recipe-header .edit-recipe-name { flex-grow: 1; margin-right: 15px; }
+.recipe-action-buttons { display: flex; align-items: center; flex-shrink: 0; margin-left: auto; }
+/* Recipe Content (remain same) */
+.recipe-item p { margin: 10px 0; line-height: 1.6; color: var(--text-color-medium); font-size: 1rem; white-space: pre-wrap; transition: color var(--transition-speed) ease; }
+.recipe-item strong { color: var(--text-color-dark); font-weight: 600; display: block; margin-bottom: 5px; transition: color var(--transition-speed) ease; }
+
+/* --- Progress Bar Styles (remain same) --- */
+#progress-container { width: 100%; background-color: var(--background-light); border-radius: var(--border-radius-medium); margin: 25px 0; overflow: hidden; box-shadow: inset 0 1px 2px rgba(0,0,0,0.08); height: 30px; transition: background-color var(--transition-speed) ease; }
+body.dark-mode #progress-container { box-shadow: inset 0 1px 2px rgba(0,0,0,0.2); }
+#progress-bar { width: 0%; height: 100%; background-color: var(--primary-color); background-image: linear-gradient(45deg, rgba(255,255,255,.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.15) 50%, rgba(255,255,255,.15) 75%, transparent 75%, transparent); background-size: 1rem 1rem; text-align: center; line-height: 30px; color: var(--text-color-white); font-weight: 600; border-radius: var(--border-radius-medium); transition: width 0.4s ease-out, background-color var(--transition-speed) ease; }
+#progress-bar span#progress-text { padding: 0 10px; display: block; }
+.delete-progress-container { width: 100%; margin: 15px 0 5px 0; background-color: var(--background-light); border-radius: var(--border-radius-small); overflow: hidden; height: 6px; transition: background-color var(--transition-speed) ease; }
+.delete-progress-bar { height: 100%; border-radius: var(--border-radius-small); background-color: var(--delete-color); transition: width 0.2s ease-out, background-color var(--transition-speed) ease; width: 0%; }
+
+/* --- Link Styling (remains same) --- */
+a { color: var(--primary-color); text-decoration: none; transition: color var(--transition-speed) ease; }
+a:hover { color: var(--primary-hover); text-decoration: underline; }
+
+/* --- Help Page Specifics (remain same) --- */
+#generation-controls { display: flex; flex-direction: column; align-items: flex-start; width: 100%; margin-bottom: 25px; }
+#generation-controls textarea#ingredients-input { width: 100%; resize: vertical; margin-bottom: 15px; }
+#generation-controls button#generate-button { width: auto; margin-top: 0; }
+#generated-recipe-container { margin-top: 35px; padding-top: 25px; border-top: 1px solid var(--border-color); width: 100%; transition: border-color var(--transition-speed) ease; }
+#generated-recipe-container h2 { margin-top: 0; margin-bottom: 20px; color: var(--primary-color); font-size: 1.3rem; font-weight: 600; border-bottom: none; padding-bottom: 0; transition: color var(--transition-speed) ease; }
+#generated-recipe { white-space: pre-wrap; background-color: var(--background-light); padding: 20px; border-radius: var(--border-radius-medium); margin-top: 10px; margin-bottom: 25px; max-height: 500px; overflow-y: auto; border: 1px solid var(--border-color); line-height: 1.7; color: var(--text-color-medium); transition: var(--color-transition); }
+#save-recipe-button { margin-top: 0; }
+
+/* --- Theme Switch (Shared Styles - remain same) --- */
+.theme-switch-wrapper { display: flex; align-items: center; gap: 8px; }
+.theme-switch-wrapper .theme-label { color: var(--text-color-medium); font-size: 0.9rem; cursor: pointer; user-select: none; transition: color var(--transition-speed) ease; }
+.theme-switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--secondary-color); transition: .4s; }
+body.dark-mode .slider { background-color: var(--secondary-hover); }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+body.dark-mode .slider:before { background-color: var(--background-light); }
+input:checked + .slider { background-color: var(--primary-color); }
+body.dark-mode input:checked + .slider { background-color: var(--primary-color); }
+input:focus + .slider { box-shadow: 0 0 0 2px var(--focus-ring-color); }
+input:checked + .slider:before { transform: translateX(24px); }
+.slider.round { border-radius: 26px; }
+.slider.round:before { border-radius: 50%; }
+
+/* --- Responsive Adjustments (remain same) --- */
+@media (max-width: 768px) {
+    .page-container { margin: 20px auto; padding: 0 15px; }
+    .page-header { flex-direction: column; align-items: stretch; margin-bottom: 30px; }
+    .page-header .header-controls { justify-content: space-between; margin-top: 15px; }
+    .page-header h1 { font-size: 1.8rem; text-align: center; }
+    .content-section { padding: 20px; }
+    .recipe-item .recipe-header { flex-wrap: wrap; align-items: center; }
+    .recipe-item .recipe-header .recipe-name-display,
+    .recipe-item .recipe-header .edit-recipe-name { width: 100%; margin-bottom: 10px; margin-right: 0; flex-grow: 0; }
+    .recipe-action-buttons { margin-left: 0; width: 100%; justify-content: flex-end; }
+    .recipe-action-buttons button { margin-left: 8px; }
+}
+@media (max-width: 480px) {
+    body.auth-page .main-container { max-width: 95%; }
+    .logo-title { font-size: 3rem; }
+    button, a.button-secondary { padding: 12px 20px; font-size: 0.95rem; }
+    .recipe-action-buttons button { padding: 6px 12px; font-size: 0.85rem; }
+    .page-header .header-controls { gap: 10px; justify-content: center; }
+    /* Hide theme label on auth page too */
+    #auth-theme-toggle-container .theme-switch-wrapper .theme-label,
+    .page-header .theme-switch-wrapper .theme-label { display: none; }
+    .recipe-action-buttons { justify-content: center; }
+}

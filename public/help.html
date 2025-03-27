@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Recipe</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page-container">
+
+        <header class="page-header simple-header">
+            <h1>Generate Recipe from Ingredients</h1>
+            <div class="header-controls">
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch" for="theme-checkbox">
+                        <input type="checkbox" id="theme-checkbox" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span class="theme-label">Dark Mode</span>
+                </div>
+                <a href="dashboard.html" class="button-secondary">Back To Dashboard</a>
+            </div>
+        </header>
+
+        <div class="content-section">
+            <p>Enter the ingredients you have available, separated by commas.</p>
+
+            <div id="generation-controls">
+                <textarea id="ingredients-input" placeholder="e.g., chicken breast, rice, soy sauce, broccoli, garlic"></textarea>
+                <button id="generate-button" class="button-primary">Generate Recipe</button>
+            </div>
+
+            <div id="message" class="message-area"></div>
+
+            <div id="progress-container" style="display: none;">
+                <div id="progress-bar">
+                    <span id="progress-text">0%</span>
+                </div>
+            </div>
+
+            <div id="generated-recipe-container" style="display: none;">
+                <h2>Generated Recipe Suggestion:</h2>
+                <div id="generated-recipe">
+                    </div>
+                <button id="save-recipe-button" class="button-primary" style="margin-top: 15px;">Save This Recipe</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script>
+     const firebaseConfig = {
+       apiKey: "AIzaSyAGz42Umx3Kmg8jZzIE9xg3n9xPrjJ0kdA", // Use your actual key
+       authDomain: "my-recipe-website-695de.firebaseapp.com",
+       projectId: "my-recipe-website-695de",
+       storageBucket: "my-recipe-website-695de.appspot.com", // Corrected .appspot.com
+       messagingSenderId: "666249719529",
+       appId: "1:666249719529:web:0de2d3785de9cd1d538a78"
+     };
+     firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

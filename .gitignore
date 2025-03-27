@@ -1,0 +1,20 @@
+# Node dependencies - very large and should be installed, not committed
+node_modules/
+
+# Environment variables - contains sensitive keys!
+.env
+
+# Service Account Key - contains private credentials! VERY IMPORTANT!
+serviceAccountKey.json
+
+# Operating System generated files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional: Add build folders if you have them (e.g., /dist, /build)
